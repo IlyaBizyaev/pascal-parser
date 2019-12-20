@@ -60,7 +60,7 @@
 | `:`       | Colon         |
 | `array`   | Array         |
 | `[`       | OpenSBracket  |
-| `.`       | Dot           |
+| `..`      | DoubleDot     |
 | `,`       | Comma         |
 | `]`       | CloseSBracket |
 | `of`      | Of            |
