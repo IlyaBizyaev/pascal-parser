@@ -74,24 +74,17 @@ fn stray_chars_fail() {
 }
 
 #[test]
-fn stray_chars_in_range_dots() {
-    assert_lexer_error("var x: array [1.?.10] of integer;");
-}
-
-#[test]
 fn multiple_ranges_lexed() {
     assert_order(
         "[1..10,1..11]",
         &[
             Token::OpenSBracket,
             Token::Number,
-            Token::Dot,
-            Token::Dot,
+            Token::DoubleDot,
             Token::Number,
             Token::Comma,
             Token::Number,
-            Token::Dot,
-            Token::Dot,
+            Token::DoubleDot,
             Token::Number,
             Token::CloseSBracket
         ]
@@ -109,8 +102,7 @@ fn full_sample_lexed() {
             Token::Array,
             Token::OpenSBracket,
             Token::Number,
-            Token::Dot,
-            Token::Dot,
+            Token::DoubleDot,
             Token::Number,
             Token::CloseSBracket,
             Token::Of,

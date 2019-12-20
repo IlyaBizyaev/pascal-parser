@@ -4,7 +4,7 @@ use std::fmt;
 pub enum Token {
     Id, Number,
     Var, Array, Of,
-    Comma, Dot, Semicolon, Colon,
+    Comma, DoubleDot, Semicolon, Colon,
     OpenSBracket, CloseSBracket,
     Epsilon, Eof
 }
@@ -17,7 +17,7 @@ impl fmt::Display for Token {
             Token::Array => "array",
             Token::Of => "of",
             Token::Comma => ",",
-            Token::Dot => ".",
+            Token::DoubleDot => "..",
             Token::Semicolon => ";",
             Token::Colon => ":",
             Token::OpenSBracket => "[",

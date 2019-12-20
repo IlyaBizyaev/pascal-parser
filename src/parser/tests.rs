@@ -17,7 +17,7 @@ fn extract_numbers(n: &Node) -> Result<Vec<String>, ParseError> {
         "D" => Ok(vec_concat(extract_numbers(&n.children[0])?,
                              extract_numbers(&n.children[1])?)),
         "R" => Ok(vec_concat(extract_numbers(&n.children[0])?,
-                             extract_numbers(&n.children[3])?)),
+                             extract_numbers(&n.children[2])?)),
         "D\'" => Ok(vec_concat(extract_numbers(&n.children[1])?,
                                extract_numbers(&n.children[2])?)),
         "P" | "D\'\'" => {

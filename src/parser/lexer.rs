@@ -53,12 +53,22 @@ impl<'a, T: Read> Lexer<'a, T> {
             return Ok(self.token.clone());
         }
 
+        if self.cur == b'.' {
+            cur_id.push('.');
+            self.read().map_err(ParseError::failed_read)?;
+            if self.cur == b'.' {
+                cur_id.push('.');
+                self.read().map_err(ParseError::failed_read)?;
+                self.token = Token::DoubleDot;
+                return Ok(Token::DoubleDot);
+            }
+        }
+
         if self.cur == 0 {
             self.token = Token::Eof;
             Ok(Token::Eof)
         } else {
             let result = match self.cur as char {
-                '.' => Ok(Token::Dot),
                 ',' => Ok(Token::Comma),
                 ';' => Ok(Token::Semicolon),
                 ':' => Ok(Token::Colon),
