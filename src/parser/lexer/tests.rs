@@ -38,8 +38,7 @@ fn assert_order(s: &str, order: &[Token]) {
     }
 }
 
-/* TODO: unclassified tests */
-
+/* Tests */
 #[test]
 fn id_lexed() {
     assert_order("integer", &[Token::Id]);
