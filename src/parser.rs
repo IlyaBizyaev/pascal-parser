@@ -112,9 +112,13 @@ impl<'a, T: Read> Parser<'a, T> {
     }
 
     fn r(&mut self) -> Result<Node, ParseError> {
-        Ok(Node::new("R",
-                     vec![self.n()?, self.skip(Token::Dot)?,
-                                 self.skip(Token::Dot)?, self.n()?]))
+        match self.lexer.token {
+            Token::Number => Ok(Node::new("R",
+                                          vec![self.n()?, self.skip(Token::Dot)?,
+                                               self.skip(Token::Dot)?, self.n()?])),
+            Token::Id => Ok(Node::new("T", vec![self.skip(Token::Id)?])),
+            _ => Err(ParseError::unexpected_token(&self.lexer, &[Token::Number, Token::Id]))
+        }
     }
 
     fn n(&mut self) -> Result<Node, ParseError> {

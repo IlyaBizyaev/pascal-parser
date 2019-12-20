@@ -51,6 +51,12 @@ fn multiple_dimensions() -> Result<(), ParseError> {
     Ok(())
 }
 
+#[test]
+fn types_as_dimensions() -> Result<(), ParseError> {
+    parse_string("var x: array [byte,char] of integer;")?;
+    Ok(())
+}
+
 /* Test failing parsing */
 #[test]
 fn no_var() {
@@ -100,6 +106,11 @@ fn no_comma_between_ranges() {
 #[test]
 fn multiple_commas_between_ranges() {
     assert_parser_error("var x: array [1..100,,2..200] of integer;");
+}
+
+#[test]
+fn no_comma_between_types() {
+    assert_parser_error("var x: array [byte char] of integer;");
 }
 
 #[test]
